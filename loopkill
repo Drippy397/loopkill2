@@ -1,0 +1,111 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local Stop = Instance.new("TextButton")
+local Loop = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.407848686, 0, 0.088888891, 0)
+Frame.Size = UDim2.new(0, 164, 0, 130)
+Frame.Draggable = true
+Frame.Active = true
+
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(-0.00068795681, 0, -0.00341880322, 0)
+TextLabel.Size = UDim2.new(0, 164, 0, 32)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "Drag Here!"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+TextLabel.Active = true
+
+
+Stop.Name = "Stop"
+Stop.Parent = Frame
+Stop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Stop.Position = UDim2.new(0.49579975, 0, 0.243779689, 0)
+Stop.Size = UDim2.new(0, 82, 0, 98)
+Stop.Font = Enum.Font.SourceSans
+Stop.Text = "Stop Loop!"
+Stop.TextColor3 = Color3.fromRGB(0, 0, 0)
+Stop.TextScaled = true
+Stop.TextSize = 14.000
+Stop.TextWrapped = true
+Stop.Active = true
+
+Loop.Name = "Loop"
+Loop.Parent = Frame
+Loop.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Loop.LayoutOrder = 1
+Loop.Position = UDim2.new(-0.000687927008, 0, 0.243779659, 0)
+Loop.Size = UDim2.new(0, 82, 0, 98)
+Loop.Font = Enum.Font.SourceSans
+Loop.Text = "Toggle Loop!"
+Loop.TextColor3 = Color3.fromRGB(0, 0, 0)
+Loop.TextScaled = true
+Loop.TextSize = 14.000
+Loop.TextWrapped = true
+Loop.Active = true
+
+-- Scripts:
+
+local function WBAC_fake_script() -- Frame.Script 
+	local script = Instance.new('Script', Frame)
+
+	local Loop = script.Parent.Loop
+	local Stop = script.Parent.Stop
+	_G.looping = false
+	
+	Stop.MouseButton1Down:Connect(function()
+		_G.looping = false
+		wait(1)
+		Stop.Text = "Looping Stopped"
+		wait(.7)
+		Stop.Text = "Stop Loop!"
+	end)
+	
+	
+	Loop.MouseButton1Down:Connect(function()
+		_G.looping = true
+		while _G.looping == true do
+		    wait(.5)
+	for i,v in ipairs(workspace:GetChildren()) do
+	if v:IsA("Model") then
+	local human = v:FindFirstChild("Humanoid")
+	local torso = v:FindFirstChild("HumanoidRootPart")
+	if human and torso and v.Name ~= nigger then
+	game:GetService("ReplicatedStorage").ACS_Engine.Eventos.Damage:FireServer(v.Humanoid, math.huge, 0, 0)
+	
+			wait(.5)
+			Loop.Text = "looping."
+			wait(.5)
+			Loop.Text = "looping.."
+			wait(.5)
+			Loop.Text = "looping..."
+			wait(.5)
+	        Loop.Text = "DON'T PRESS TWICE!"
+			if _G.looping == false then
+			Loop.Text = "Toogle Loop!"
+	end					
+	end
+	end
+	end
+	end
+	end)
+end
+coroutine.wrap(WBAC_fake_script)()
